@@ -10,6 +10,7 @@ class BaiterBot(commands.Bot):
 
     def __init__(self):
         super().__init__(command_prefix="!")
+        self._last_result = None
         self.session = aiohttp.ClientSession(loop=self.loop)
         self.urban_client = urbanasync.Client(session=self.session)
 
@@ -48,13 +49,14 @@ class BaiterBot(commands.Bot):
         '''Searches for a term in Urban Dictionary'''
         try:
             definition_number = int(search_term.split(" ")[-1])-1
+            search_term = search_term.rsplit(' ', 1)[0]
         except:
             definition_number = 0
         try:
             term = await self.urban_client.get_term(search_term)
         except LookupError:
             return await ctx.send("Term does not exist!")
-        definition = term.data[definition_number]
+        definition = term.definitions[definition_number]
         em = discord.Embed(title=definition.word, description=definition.definition, color=0x181818)
         em.add_field(name="Example", value=definition.example)
         em.add_field(name="Popularity", value=f"{definition.upvotes} 👍 {definition.downvotes} 👎")
