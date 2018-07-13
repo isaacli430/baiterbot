@@ -52,6 +52,7 @@ class BaiterBot(commands.Bot):
             search_term = search_term.rsplit(' ', 1)[0]
         except:
             definition_number = 0
+        search_term = ''.join(search_term.split('"'))
         try:
             term = await self.urban_client.get_term(search_term)
         except LookupError:
