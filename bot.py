@@ -81,7 +81,7 @@ class BaiterBot(commands.Bot):
             return await ctx.send(embed=discord.Embed(color=0x181818, title=f"``{ctx.prefix}{command.signature}``", description=command.short_doc))
         comms = []
         for command in self.commands:
-            if command.cog_name == "RPSBot" and not command.hidden:
+            if command.cog_name == "BaiterBot" and not command.hidden:
                 comms.append(f"{ctx.prefix}{command.name}{' '*(15-len(command.name))}{command.short_doc}")
         em = discord.Embed(title='Help', color=0x181818)
         em.set_author(name='Royale Prestige Series', icon_url=self.user.avatar_url)
