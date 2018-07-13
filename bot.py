@@ -57,25 +57,11 @@ class BaiterBot(commands.Bot):
         raise error
 
     @commands.command()
-    async def urban(self, ctx, *, search_term):
-        '''Searches for a term in Urban Dictionary'''
-        try:
-            definition_number = int(search_term.split(" ")[-1])-1
-            search_term = search_term.rsplit(' ', 1)[0]
-        except:
-            definition_number = 0
-        search_term = ''.join(search_term.split('"'))
-        try:
-            term = await self.urban_client.get_term(search_term)
-        except LookupError:
-            return await ctx.send("Term does not exist!")
-        definition = term.definitions[definition_number]
-        em = discord.Embed(title=definition.word, description=definition.definition, color=0x181818)
-        em.add_field(name="Example", value=definition.example)
-        em.add_field(name="Popularity", value=f"{definition.upvotes} 👍 {definition.downvotes} 👎")
-        em.add_field(name="Author", value=definition.author)
-        em.add_field(name="Permalink", value=f"[Click here!]({definition.permalink})")
-        await ctx.send(embed=em)
+    async def suggest(self, ctx, *, message):
+        '''Suggest a feature to the Lord and Almighty Masterbaiter'''
+        em = discord.Embed(color=discord.Color.green(), title="Suggestion", description=message)
+        em.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
+        await discord.utils.get(ctx.guild.text_channels, id=441176963093364736).send(embed=em)
 
     @commands.command(name='help')
     async def _help(self, ctx, command=None):
