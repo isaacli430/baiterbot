@@ -44,6 +44,12 @@ class BaiterBot(commands.Bot):
         perms.administrator = True
         print(f"Bot is ready! Invite: {discord.utils.oauth_url(self.user.id, perms)}")
 
+    async def on_command_error(self, ctx, error):
+        if isinstance(error, commands.errors.CheckFailure):
+            return await ctx.send("You don't have the permissions to run that command!")
+        await ctx.send(embed=discord.Embed(color=0x181818, title=f"``{ctx.prefix}{ctx.command.signature}``", description=ctx.command.short_doc))
+        raise error
+
     @commands.command()
     async def urban(self, ctx, *, search_term):
         '''Searches for a term in Urban Dictionary'''
