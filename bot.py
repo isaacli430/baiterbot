@@ -48,7 +48,7 @@ class BaiterBot(commands.Bot):
         await discord.utils.get(member.guild.text_channels, name="welcome").send(f"Hey {member.mention}, welcome to Masters Of Baiting! Please read the #rules. Suggestions are always welcome in #feedback too. Enjoy your stay here!\n\nInvite link: https://discord.gg/MtpjRff")
 
     async def on_member_remove(self, member):
-        await discord.utils.get(member.guild.text_channels, name="welcome").send(f"**{member.name}** just left {member.guild.name}. Bye! 👋")
+        await discord.utils.get(member.guild.text_channels, name="welcome").send(f"Rest in RIP, **{member.name}**.")
 
     async def on_command_error(self, ctx, error):
         if isinstance(error, commands.errors.CheckFailure):
