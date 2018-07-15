@@ -3,7 +3,7 @@ from discord.ext import commands
 from contextlib import redirect_stdout
 from reactwait import ReactWait
 import youtube_dl
-import inspect, aiohttp, asyncio, io, textwrap, traceback, os, ctypes, re, json, random, datetime
+import inspect, aiohttp, asyncio, io, textwrap, traceback, os, ctypes, re, json, random, datetime, urbanasync
 
 class Cog:
     def __init__(self, bot):
@@ -35,6 +35,7 @@ class Cog:
         def __init__(self, bot):
             self.bot = bot
             self.session = bot.session
+            self.urban_client = urbanasync.Client(session=self.session)
 
         @commands.command()
         async def urban(self, ctx, *, search_term):

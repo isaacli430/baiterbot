@@ -12,7 +12,6 @@ class BaiterBot(commands.Bot):
         super().__init__(command_prefix="!")
         self._last_result = None
         self.session = aiohttp.ClientSession(loop=self.loop)
-        self.urban_client = urbanasync.Client(session=self.session)
 
     def paginate(self, text: str):
         '''Simple generator that paginates text.'''
