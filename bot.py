@@ -44,7 +44,7 @@ class BaiterBot(commands.Bot):
         print(f"Bot is ready! Invite: {discord.utils.oauth_url(self.user.id, perms)}")
 
     async def on_member_join(self, member):
-        await discord.utils.get(member.guild.text_channels, name="welcome").send(f"Hey {member.mention}, welcome to Masters Of Baiting! Please read the #rules. Suggestions are always welcome too. To suggest do `!suggest <suggestion`. Enjoy your stay here!\n\nInvite link: https://discord.gg/MtpjRff")
+        await discord.utils.get(member.guild.text_channels, name="welcome").send(f"Hey {member.mention}, welcome to Masters Of Baiting! Please read the #rules. Suggestions are always welcome too. To suggest do `!suggest <suggestion>`. Enjoy your stay here!\n\nInvite link: https://discord.gg/MtpjRff")
 
     async def on_command_error(self, ctx, error):
         if isinstance(error, commands.errors.CheckFailure):
