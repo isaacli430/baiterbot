@@ -84,6 +84,10 @@ class BaiterBot(commands.Bot):
         session = PaginatorSession(ctx=ctx, pages=ems, footer_text="Type !help command for more info on a command.")
         await session.run()
 
+    @commands.command()
+    async def listen(self, ctx):
+        await ctx.send("SHUT UP <@241445813891366912>")
+
     @commands.command(pass_context=True, hidden=True, name='eval')
     async def _eval(self, ctx, *, body: str, edit=False):
         """Evaluates python code"""
